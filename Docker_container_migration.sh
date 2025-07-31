@@ -211,7 +211,7 @@ full_docker_backup() {
     echo -e "\n${GREEN}--- ✅  Docker容器 备份完成！ ---${NC}"
     echo -e "请在${YELLOW}新服务器${NC}上运行此脚本并选择恢复选项。"
     echo -e "下载地址: ${YELLOW}http://${SERVER_IP}:8889/docker_full_backup.tar.gz${NC}"
-    echo -e "备份完成后，建议在本机执行 ${GREEN}'2. 恢复原始 Nginx 配置'${NC} 选项以进行清理。"
+    echo -e "恢复完成后，可在本机执行 ${GREEN}'2. 恢复原始 Nginx 配置'${NC} 选项以进行清理。"
 }
 
 ### ========================================================= ###
