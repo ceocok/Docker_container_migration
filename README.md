@@ -23,7 +23,8 @@ root 权限（或 sudo）。
 
 任意目录均可
 ```
-curl -O https://raw.githubusercontent.com/ceocok/c.cococ/refs/heads/main/Docker_container_migration.sh
+
+curl -O https://raw.githubusercontent.com/ceocok/Docker_container_migration/refs/heads/main/Docker_container_migration.sh
 chmod +x Docker_container_migration.sh
 ./Docker_container_migration.sh
 ```
