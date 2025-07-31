@@ -1,6 +1,6 @@
 # Docker 容器一键迁移脚本
 
-教程看https://www.nodeseek.com/post-409979-1
+已经很简单了，如果实在不懂教程看https://www.nodeseek.com/post-409979-1
 
 
 该脚本可在两台 Linux 服务器间 全自动备份 & 恢复 所有 Docker 容器（含卷数据），并自带临时下载服务器，无须手动传输文件。
