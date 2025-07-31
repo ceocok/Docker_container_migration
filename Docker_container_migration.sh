@@ -282,7 +282,7 @@ full_docker_restore() {
 main_menu() {
   while true; do
     echo -e "\n${Blue}======================================${Font}"
-    echo -e "    Docker容器 迁移工具 "
+    echo -e "        Docker容器 迁移工具 "
     echo -e "${Blue}======================================${Font}"
     echo -e "  ${GREEN}1.${NC}  通用 Docker 容器迁移"
     echo -e "  ${GREEN}2.${NC}  清理临时的 Nginx 配置 "
