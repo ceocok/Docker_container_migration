@@ -3,7 +3,9 @@
 # --- 定义颜色输出 ---
 GREEN='\033[0;32m'
 RED='\033[0;31m'
+Blue="\033[36m"
 YELLOW='\033[1;33m'
+Font="\033[0m"
 NC='\033[0m'
 
 # --- 脚本必须以 root 权限运行 ---
@@ -235,19 +237,18 @@ full_docker_restore() {
 # ==================================================
 main_menu() {
   while true; do
-    echo -e "\n============================================="
-    echo -e "  Docker容器 迁移工具 (by:ceocok)"
-    echo -e "============================================="
-    echo -e "  ${GREEN}1.${NC} ★★★ 通用 Docker容器 迁移 ★★★"
-    echo -e "  ${GREEN}2.${NC} [在源服务器] 恢复原始 Nginx 配置"
-    echo "---------------------------------------------"
-    echo -e "  ${RED}3.${NC} 退出脚本"
-    echo "============================================="
+    echo -e "${Blue}======================================${Font}"
+    echo -e "    Docker容器 迁移工具 (by:ceocok)"
+    echo -e "${Blue}======================================${Font}"
+    echo -e "  ${GREEN}1.${NC}  通用 Docker容器 迁移 "
+    echo -e "  ${GREEN}2.${NC}  恢复原始 Nginx 配置"
+    echo -e "  ${RED}3.${NC}  退出脚本"
+    echo -e "${Blue}======================================${Font}"
     read -p "请输入选项 (1-3): " choice
     case $choice in
       1)
         while true; do
-            echo -e "\n--- 通用 Docker 迁移菜单 ---"
+            echo -e "${Blue}--- 通用 Docker 迁移菜单 ---${Font}"
             echo " 1. 备份所有容器 (在源服务器执行)"
             echo " 2. 恢复所有容器 (在新服务器执行)"
             echo " 3. 返回主菜单"
