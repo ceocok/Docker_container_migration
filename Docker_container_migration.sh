@@ -154,7 +154,7 @@ full_docker_backup() {
 
         {
             echo ""
-            echo "echo -e \"\n\${GREEN}--- 正在恢复容器: $container ---\${NC}\""
+            echo "echo -e \"\n--- 正在恢复容器: $container ---\""
             echo "CID=\$($CLEANED_COMMAND)"
             echo "if [ -n \"\$CID\" ]; then"
             echo "echo -e \"\${GREEN}容器 $container 恢复成功！ (ID: \$(echo \$CID | cut -c1-12)) \${NC}\""
