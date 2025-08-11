@@ -50,7 +50,7 @@ ensure_packages() {
 	if [ ${#pkgs_to_install[@]} -eq 0 ]; then return 0; fi
 
 	echo -e "${YELLOW}以下依赖需要安装: ${pkgs_to_install[*]}${NC}"
-	read -p "是否继续安装? (y/N): " confirm_install
+	read -p "是否继续安装? (Y/N): " confirm_install
 	[[ ! "$confirm_install" =~ ^[Yy]$ ]] && { echo "安装取消。"; return 1; }
 
 	if [[ "$OS_TYPE" == "linux" ]]; then
@@ -190,7 +190,7 @@ migration_backup() {
 		if ! docker ps -q --filter "name=^/${c}$" | grep -q .; then
 			echo -e "${RED}错误: 容器 '$c' 不存在或未运行，已跳过。${NC}"; continue
 		fi
-		echo -e "\n${YELLOW}正在处理容器: $c ...${NC}"
+		echo -e "\n${YELLOW}正在备份容器文件并生成安装命令: $c ...${NC}"
 		
 		# 1. 记录数据卷的绝对路径
 		docker inspect "$c" --format '{{range .Mounts}}{{.Source}}{{"\n"}}{{end}}' >> "${volume_paths_file}"
@@ -222,7 +222,7 @@ migration_backup() {
 	sudo rm -rf "$TEMP_DIR"
 	
 	local server_ip; server_ip=$(get_server_ip)
-	echo -e "\n${GREEN}--- ✅  备份完成！请在新服务器恢复完后再退出脚本 ---${NC}"
+	echo -e "\n${GREEN}--- ✅  备份完成！【请在新服务器恢复完后再退出脚本】！！ ---${NC}"
 	echo -e "在新服务器上，输入源服务器的IP或域名将会自动下载以下备份文件:"
 	echo -e "1. 数据包:   ${BLUE}http://${server_ip}:8889/${DATA_ARCHIVE_NAME}${NC}"
 	echo -e "2. 启动脚本: ${BLUE}http://${server_ip}:8889/${START_SCRIPT_NAME}${NC}"
@@ -246,8 +246,8 @@ migration_restore() {
 
 	echo "正在下载启动脚本..."
 	wget -q --show-progress "$script_url" -O "$START_SCRIPT_NAME" || { echo -e "${RED}下载启动脚本失败!${NC}"; return 1; }
-	echo "正在下载数据包..."
-	wget -q --show-progress "$data_url" -O "$DATA_ARCHIVE_NAME" || { echo -e "${RED}下载数据包失败!${NC}"; rm -f "$START_SCRIPT_NAME"; return 1; }
+	echo "正在下载备份数据包..."
+	wget -q --show-progress "$data_url" -O "$DATA_ARCHIVE_NAME" || { echo -e "${RED}下载备份数据包失败!${NC}"; rm -f "$START_SCRIPT_NAME"; return 1; }
 	
 	echo -e "\n${YELLOW}正在解压数据到容器指定路径...${NC}"
 	# 使用 -P 来处理绝对路径, -p 保留权限, -C / 在根目录解压
@@ -257,7 +257,7 @@ migration_restore() {
 	fi
 	sudo chmod +x "$START_SCRIPT_NAME"
 
-	echo -e "\n${GREEN}--- 数据已各就各位，准备启动容器... ---${NC}"
+	echo -e "\n${GREEN}--- 数据已恢复完毕，准备启动容器... ---${NC}"
 	echo "正在执行启动脚本..."
 	if sudo ./"$START_SCRIPT_NAME"; then
 		echo -e "\n${GREEN}--- ✅ 容器启动脚本执行完毕！---${NC}"
@@ -265,8 +265,6 @@ migration_restore() {
 		echo "正在自动清理临时文件..."
 		sudo rm -f "$DATA_ARCHIVE_NAME" "$START_SCRIPT_NAME"
 		echo "临时文件已清理。"
-
-		echo -e "\n${YELLOW}正在显示最终容器状态...${NC}"
 		docker ps -a
 	else
 		echo -e "\n${RED}容器启动脚本执行时发生错误！请检查上面的日志输出。${NC}"
