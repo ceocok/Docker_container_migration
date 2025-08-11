@@ -238,7 +238,7 @@ migration_restore() {
 	local DATA_ARCHIVE_NAME="docker_data.tar.gz"
 	local START_SCRIPT_NAME="docker_run.sh"
 
-	read -p "请输入源服务器的 IP 地址: " source_ip
+	read -p "请输入源服务器的 IP 地址或域名: " source_ip
 	[ -z "$source_ip" ] && { echo -e "${RED}IP 地址不能为空。${NC}"; return 1; }
 
 	local data_url="http://${source_ip}:8889/${DATA_ARCHIVE_NAME}"
