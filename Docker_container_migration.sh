@@ -279,7 +279,7 @@ migration_restore() {
 main_menu() {
 	while true; do
 		echo -e "\n${BLUE}=============================================${NC}"
-		echo -e "      Docker 迁移与备份工具 v4.1 (优化版)"
+		echo -e "      Docker 迁移与备份工具 v4.1 (by:ceocok)"
 		echo -e "${BLUE}=============================================${NC}"
 		echo -e "  --- 请选择操作 ---"
 		echo -e "  ${GREEN}1.${NC}  Docker 迁移备份 (在源服务器运行)"
