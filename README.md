@@ -63,3 +63,4 @@ sudo ./Docker_container_migration.sh
 📄 许可证
 
 本仓库除另行声明外，均采用 MIT License。随意使用、修改与分发，但请保留原作者信息。
+https://vsllm.com/register?aff=TvrQ
